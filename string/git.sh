@@ -8,7 +8,10 @@ then
     echo "Setting SSH-AGENT......."
     eval "$(ssh-agent -s)" 1> git.log 2> git_err.log
     ssh-add "$KEY_PATH" 1> git.log 2> git_err.log
+else
+    touch git.log git.log
 fi
+
 
 if [ "$1" = "push" ]
 then
@@ -18,12 +21,15 @@ then
     git push origin master 1>> git.log 2>> git_err.log
     if [ $? -eq 0 ]; then
         echo "Pushed succesfully"
+    else
+        echo "Pushed failed check git_err.log"
     fi
-
 elif [ "$1" = "pull" ]
 then
-    echo "git pull"
+    echo "Pulling from git repo"
+    git reset --hard master 1>> git.log 2>> git_err.log
+    git pull origin master
 else
-    echo "put argument for \"push\" or \"pull\""
+    echo "put argument for \"push\" or \"pull\" while running script"
 fi
 
