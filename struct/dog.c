@@ -17,16 +17,19 @@ typedef struct
 }Entry;
 
 char* str_cpy(char* src,char* dest);
+void show_name(Entry* obj);
 
 int main()
 {
     Entry one;
+    Entry* onep = &one; 
 
     str_cpy("manilal",one.fname);
     str_cpy("gujar",one.lname);
 
-    printf("%s",one.fname);
-    printf(" %s\n",one.lname);
+    one.id = 909;
+
+    show_name(onep);
 
     return 0;
 }
@@ -45,3 +48,8 @@ char* str_cpy(char* src,char* dest)
     return src;
 }
 
+void show_name(Entry* obj)
+{
+    printf("%s %s\n",obj->fname,obj->lname);
+    printf("id=%d\n",obj->id);
+}
