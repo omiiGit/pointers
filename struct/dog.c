@@ -30,6 +30,7 @@ int main()
     one.id = 909;
 
     show_name(onep);
+    show_name(onep);
 
     return 0;
 }
@@ -50,6 +51,6 @@ char* str_cpy(char* src,char* dest)
 
 void show_name(Entry* obj)
 {
-    printf("%s %s\n",obj->fname,obj->lname);
+    printf("%s %s\n",(*obj).fname,obj->lname);
     printf("id=%d\n",obj->id);
 }
