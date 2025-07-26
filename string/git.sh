@@ -20,7 +20,7 @@ then
     git commit -m "updated on $date" 1>> git.log 2>> git_err.log
     git push origin master 1>> git.log 2>> git_err.log
     if [ $? -eq 0 ]; then
-        echo "Pushed succesfully"
+        echo "Pushed repo succesfully"
     else
         echo "Pushed failed check git_err.log"
     fi
@@ -29,6 +29,12 @@ then
     echo "Pulling from git repo"
     git reset --hard master 1>> git.log 2>> git_err.log
     git pull origin master
+    if [ $? -eq 0 ]; then
+        echo "Pulled repo succesfully"
+    else
+        echo "Pulled failed check git_err.log"
+    fi
+
 else
     echo "put argument for \"push\" or \"pull\" while running script"
 fi
